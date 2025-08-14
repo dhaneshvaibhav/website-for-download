@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../src/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
 
 const techOptions = [
@@ -43,7 +44,20 @@ export default function HeroSection() {
 
       {/* RIGHT SIDE - Accordion */}
       <div className="w-full md:w-1/2 mt-8 md:mt-0 md:ml-12">
-       
+        <Accordion>
+  <AccordionItem>
+    <AccordionTrigger>Accordion Item 1</AccordionTrigger>
+    <AccordionPanel>Accordion Panel 1</AccordionPanel>
+  </AccordionItem>
+  <AccordionItem>
+    <AccordionTrigger>Accordion Item 2</AccordionTrigger>
+    <AccordionPanel>Accordion Panel 2</AccordionPanel>
+  </AccordionItem>
+  <AccordionItem>
+    <AccordionTrigger>Accordion Item 3</AccordionTrigger>
+    <AccordionPanel>Accordion Panel 3</AccordionPanel>
+  </AccordionItem>
+</Accordion>
         <Button className="mt-6">Get Started</Button>
       </div>
     </section>
