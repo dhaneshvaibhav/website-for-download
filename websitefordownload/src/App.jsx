@@ -1,213 +1,367 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import LightRays from "./LightRays/LightRays";
-import { createClient } from '@supabase/supabase-js';
+import React from "react";
+import { Terminal, Plane, Layers, Brush, Code2 } from "lucide-react";
 
 export default function App() {
-  const [animateToNav, setAnimateToNav] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
-  const [showContent, setShowContent] = useState(false);
-  const [clicked, setClicked] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: ""
-  });
+  const fontFamily = "'Times New Roman', Times, serif, kreon";
+  const fontWeightNormal = "400";
 
-  const client = createClient(
-    "https://hwkwretkfwcmuamhfjni.supabase.co", 
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh3a3dyZXRrZndjbXVhbWhmam5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExODUwMDcsImV4cCI6MjA2Njc2MTAwN30.hxG3HiTEXsJoB8fMkbQi0OiNQeMBjtAA-gdJD-aMqxc"
-  );
+  const features = [
+    {
+      icon: <Terminal size={32} color="#22c55e" />,
+      title: "5M+ monthly downloads",
+      desc: "Apache 2.0\n21k Github stars",
+    },
+    {
+      icon: <Plane size={32} color="#e5e7eb" />,
+      title: "Low latency search",
+      desc: "Fast queries over billions of multi-tenant indexes.",
+    },
+    {
+      icon: <Layers size={32} color="#e5e7eb" />,
+      title: "Up to 10x cheaper",
+      desc: "Built on object storage with automatic data tiering.",
+    },
+    {
+      icon: <Brush size={32} color="#e5e7eb" />,
+      title: "No engineering ops",
+      desc: "Scales with your data and traffic. SOC 2 Type I.",
+    },
+  ];
 
-  const handlesubmit = async (e) => {
-    e.preventDefault();
-    alert("Form submitted!");
-    const {error} = await client.from("user_data").insert({
-      name: formData.name, 
-      email: formData.email
-    });
-    if (error) {
-      console.error("Error inserting data:", error);
-    }
+  // Second features for the special square layout
+  const secondFeatures = [
+    {
+      icon: <Code2 size={32} color="#e5e7eb" />,
+      title: "Block 1 - Large Vertical",
+      image:"C:\Users\Dell\OneDrive\Desktop\New folder\app2\website for download\websitefordownload\src\assets\Screenshot_2025-08-15_175401-removebg-preview.png",
+      desc: "Tall rectangular block representing something big.",
+    },
+    {
+      icon: <Terminal size={32} color="#e5e7eb" />,
+      title: "Block 2",
+      desc: "Square block",
+    },
+    {
+      icon: <Plane size={32} color="#e5e7eb" />,
+      title: "Block 3",
+      desc: "Square block",
+    },
+    
+  ];
+
+  const styles = {
+    container: {
+      fontFamily,
+      fontWeight: fontWeightNormal,
+      color: "#f5f5f5",
+      backgroundColor: "#0d0d0d",
+      margin: 0,
+      padding: 0,
+      minHeight: "100vh",
+    },
+    contentWrapper: {
+      maxWidth: "1100px",
+      margin: "0 auto",
+      fontFamily: "Kreon",
+      padding: "0 1rem",
+    },
+    header: {
+      borderBottom: "1px solid #333",
+      backgroundColor: "#0d0d0d",
+    },
+    headerContent: {
+      margin: "0 auto",
+      padding: "0 1rem",
+      fontFamily: "kreon",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      height: "64px",
+    },
+    leftSection: {
+      display: "flex",
+      alignItems: "center",
+      gap: "1.5rem",
+    },
+    logo: {
+      display: "flex",
+      alignItems: "center",
+    },
+    nav: {
+      display: "flex",
+      gap: "1.25rem",
+    },
+    navLink: {
+      textDecoration: "none",
+      color: "#ccc",
+      fontSize: "0.95rem",
+      fontWeight: "500",
+    },
+    rightSection: {
+      display: "flex",
+      alignItems: "center",
+      gap: "0.75rem",
+    },
+    text: {
+      fontSize: "0.9rem",
+      color: "#ccc",
+    },
+    buttonPrimary: {
+      padding: "0.4rem 0.9rem",
+      backgroundColor: "white",
+      color: "black",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+      fontSize: "0.9rem",
+    },
+    buttonSecondary: {
+      padding: "0.4rem 0.9rem",
+      backgroundColor: "transparent",
+      border: "1px solid #ffffff",
+      borderRadius: "6px",
+      color: "#ffffff",
+      cursor: "pointer",
+      fontSize: "0.9rem",
+    },
+    heroWrapper: {
+      maxWidth: "800px",
+      margin: "0 auto",
+      padding: "0 1rem",
+    },
+    hero: {
+      padding: "4rem 0",
+      textAlign: "left",
+    },
+    heroTitle: {
+      fontSize: "2.5rem",
+      marginBottom: "1rem",
+      color: "#f5f5f5",
+    },
+    heroText: {
+      fontSize: "1.2rem",
+      marginBottom: "2rem",
+      color: "#ccc",
+    },
+    featuresGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: "1.5rem",
+      padding: "2rem 0",
+    },
+    featureCard: {
+      backgroundColor: "#0d0d0d",
+      padding: "1.5rem",
+      border: "1px solid #ffffff",
+      boxShadow: "0 1px 3px rgba(255,255,255,0.05)",
+      transition: "all 0.3s ease-in-out",
+      transform: "scale(1)",
+      borderRadius: 0,
+    },
+    featureCardHover: {
+      transform: "scale(1.03)",
+      boxShadow:
+        "6px 6px 0 rgba(255,255,255,0.6), 7px 7px 5px rgba(255,255,255,0.1)",
+    },
+    featureTitle: {
+      marginTop: "1rem",
+      fontWeight: "600",
+      fontSize: "1.125rem",
+      color: "#fff",
+    },
+    featureDesc: {
+      marginTop: "0.5rem",
+      color: "#ccc",
+      whiteSpace: "pre-line",
+    },
+    footer: {
+      padding: "2rem 0",
+      borderTop: "1px solid #333",
+      fontSize: "0.9rem",
+      textAlign: "center",
+      color: "#888",
+    },
+    footerLinks: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      gap: "1rem",
+      margin: "1rem 0",
+    },
+
+    // New styles for the second features section container
+    secondFeaturesContainer: {
+      display: "flex",
+      gap: "1.5rem",
+      padding: "2rem 0",
+      // Fixed height to make big block and smaller blocks same height
+      height: "440px",
+    },
+    bigBlock: {
+      flex: 2,
+      backgroundColor: "#0d0d0d",
+      border: "1px solid #fff",
+      padding: "1.5rem",
+      boxShadow:
+        "6px 6px 0 rgba(255,255,255,0.6), 7px 7px 5px rgba(255,255,255,0.1)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      borderRadius: 0,
+    },
+    smallBlocksContainer: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      gap: "1.5rem",
+    },
+    smallBlock: {
+      flex: 1,
+      backgroundColor: "#0d0d0d",
+      border: "1px solid #fff",
+      padding: "1rem",
+      boxShadow:
+        "6px 6px 0 rgba(255,255,255,0.6), 7px 7px 5px rgba(255,255,255,0.1)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      borderRadius: 0,
+    },
   };
 
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
-
-  useEffect(() => {
-    const toNavTimer = setTimeout(() => {
-      setAnimateToNav(true);
-    }, 2000);
-
-    const navTimer = setTimeout(() => {
-      setShowNavbar(true);
-    }, 4000);
-
-    const contentTimer = setTimeout(() => {
-      setShowContent(true);
-    }, 4200);
-
-    return () => {
-      clearTimeout(toNavTimer);
-      clearTimeout(navTimer);
-      clearTimeout(contentTimer);
-    };
-  }, []);
-
-  // Theme-based styles
-  const themeStyles = {
-    background: isDarkTheme ? 'bg-gray-950' : 'bg-gray-50',
-    text: isDarkTheme ? 'text-white' : 'text-gray-900',
-    navText: isDarkTheme ? 'text-white' : 'text-gray-900',
-    navHover: isDarkTheme ? 'hover:text-indigo-400' : 'hover:text-indigo-600',
-    gradient: isDarkTheme ? 'from-transparent via-gray-950/20 to-gray-900/40' : 'from-transparent via-gray-50/20 to-gray-100/40',
-    subtext: isDarkTheme ? 'text-gray-300' : 'text-gray-600',
-    formBg: isDarkTheme ? 'bg-gray-800/70' : 'bg-white/80',
-    formBorder: isDarkTheme ? 'border-gray-600/50' : 'border-gray-300/50',
-    inputBg: isDarkTheme ? 'bg-gray-700' : 'bg-white',
-    inputBorder: isDarkTheme ? 'border-gray-600' : 'border-gray-300',
-    inputText: isDarkTheme ? 'text-white' : 'text-gray-900',
-    placeholder: isDarkTheme ? 'placeholder-gray-400' : 'placeholder-gray-500',
-    dropShadow: isDarkTheme ? 'drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]' : 'drop-shadow-[0_0_20px_rgba(0,0,0,0.3)]',
-    toggleBg: isDarkTheme ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white/20 hover:bg-white/30'
-  };
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
+  const [hoveredSecondIndex, setHoveredSecondIndex] = React.useState(null);
 
   return (
-    <div className={`min-h-screen ${themeStyles.background} ${themeStyles.text} relative overflow-hidden transition-colors duration-500`}>
-      {/* Logo Animation */}
-      <h1
-        className={`absolute font-extrabold text-6xl transition-all duration-1000 ease-in-out z-20
-          ${animateToNav
-            ? "top-5 left-8 text-xl"
-            : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-text-pop"
-          }`}
-      >
-        Adjunct
-      </h1>
-
-      {/* Navbar */}
-      {showNavbar && (
-        <nav className="absolute top-0 left-0 w-full flex items-center justify-between px-8 py-4 z-10 transition-colors duration-500">
-          <div></div> {/* Spacer for logo */}
-          <div className="flex items-center gap-6">
-            <ul className="flex gap-6 text-sm">
-              <li className={`${themeStyles.navText} ${themeStyles.navHover} cursor-pointer transition-colors`}>Home</li>
-              <li className={`${themeStyles.navText} ${themeStyles.navHover} cursor-pointer transition-colors`}>Features</li>
-              <li className={`${themeStyles.navText} ${themeStyles.navHover} cursor-pointer transition-colors`}>Contact</li>
-            </ul>
-            
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className={`ml-4 p-2 rounded-full ${themeStyles.toggleBg} backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 hover:scale-105`}
-              aria-label="Toggle theme"
-            >
-              {isDarkTheme ? (
-                <svg className="w-5 h-5 text-yellow-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="5"/>
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                </svg>
-              ) : (
-                <svg className="w-5 h-5 text-indigo-600 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-              )}
-            </button>
-          </div>
-        </nav>
-      )}
-
-      {/* Main Content */}
-      {showContent && (
-        <div className="fade-in relative w-full h-screen">
-          {/* LightRays Background */}
-          <div className="absolute inset-0 z-0">
-            <LightRays
-              raysOrigin="top-center"
-              raysColor={isDarkTheme ? "#ffffff" : "#000000"}
-              raysSpeed={1.5}
-              lightSpread={0.8}
-              rayLength={1.2}
-              followMouse={false}
-              mouseInfluence={0.1}
-              noiseAmount={0.1}
-              distortion={0.05}
-              className="custom-rays"
-            />
-          </div>
-          
-          {/* Content Layer */}
-          <div className={`relative z-10 min-h-screen flex justify-between items-center px-8 md:px-32 bg-gradient-to-b ${themeStyles.gradient} transition-all duration-500`}>
-            {/* Left Side - Main Content */}
-            <div className="flex flex-col justify-center items-start max-w-2xl">
-              {/* Headline */}
-              <h1 className={`text-5xl md:text-6xl font-extrabold mb-4 leading-tight ${themeStyles.text} ${themeStyles.dropShadow} transition-all duration-500`}>
-                ADJUNCT<br /> Human Intelligence,
-                AI Precision,
-                Perfectly Fused.
-              </h1>
-
-              {/* Subtext */}
-              <p className={`text-lg md:text-xl ${themeStyles.subtext} mb-8 transition-colors duration-500`}>
-                A Personal Assistant developed to help you with your daily tasks.
-              </p>
-
-              {/* Button */}
-              <button 
-                className="bg-purple-600 hover:bg-purple-700 transition-colors text-white font-semibold px-8 py-4 rounded-full flex items-center gap-3 shadow-lg hover:shadow-xl" 
-                onClick={() => setClicked(true)}
-              >
-                Download now
-                <span className="text-xl font-bold">→</span>
-              </button>
+    <div style={styles.container}>
+      {/* HEADER */}
+      <header style={styles.header}>
+        <div style={styles.headerContent}>
+          {/* Left: logo + badge + nav */}
+          <div style={styles.leftSection}>
+            <div style={styles.logo}>
+              <img src="logo.png" alt="Logo" style={{ height: "28px" }} />
             </div>
+            <div>
+              <img
+                src="https://img.shields.io/github/stars/chroma-core/chroma?style=social"
+                alt="GitHub Stars"
+              />
+            </div>
+            <nav style={styles.nav}>
+              {["Docs", "GitHub", "Blogs", "Updates"].map((link) => (
+                <a key={link} href="#" style={styles.navLink}>
+                  {link}
+                </a>
+              ))}
+            </nav>
+          </div>
 
-            {/* Right Side - Form */}
-            {clicked && (
-              <div className="w-full max-w-md ml-8 animate-fade-in relative">
-                <form onSubmit={handlesubmit} className={`flex flex-col space-y-4 ${themeStyles.formBg} backdrop-blur-lg p-6 rounded-lg border ${themeStyles.formBorder} transition-all duration-500`}>
-                  {/* Close Button */}
-                  <button
-                    type="button"
-                    onClick={() => setClicked(false)}
-                    className={`absolute -top-3 -right-3 w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-red-400 shadow-lg`}
-                    aria-label="Close form"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-
-                  <h3 className={`text-xl font-semibold mb-4 text-center ${themeStyles.text} transition-colors duration-500`}>Get Early Access</h3>
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className={`p-3 border ${themeStyles.inputBorder} rounded-lg ${themeStyles.inputBg} ${themeStyles.inputText} ${themeStyles.placeholder} focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-300`}
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`p-3 border ${themeStyles.inputBorder} rounded-lg ${themeStyles.inputBg} ${themeStyles.inputText} ${themeStyles.placeholder} focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-300`}
-                    required
-                  />
-                  <button 
-                    type="submit" 
-                    className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-                  >
-                    Submit
-                  </button>
-                </form>
-              </div>
-            )}
+          {/* Right: CTA */}
+          <div style={styles.rightSection}>
+            
+            <button style={styles.buttonSecondary}>Get early access</button>
+          
           </div>
         </div>
-      )}
+      </header>
+
+      {/* MAIN CONTENT */}
+      <div style={styles.contentWrapper}>
+        {/* HERO (centered tighter) */}
+        <div style={styles.heroWrapper}>
+          <section style={styles.hero}>
+            <h1 style={styles.heroTitle}>
+              Adjunct is the real time messaging platform with AI Intelligence.
+            </h1>
+            <p style={styles.heroText}>
+              Human Intelligence, AI Precision, Perfectly Fused. The messaging
+              app that uses the AI which does the work easy and provides the
+              privacy than any other. Not just the guidance, It's the
+              performance.
+            </p>
+            <button style={styles.buttonPrimary}>Join Waitlist</button>
+          </section>
+        </div>
+
+        {/* FIRST FEATURES GRID */}
+        <section style={styles.featuresGrid}>
+          {features.map((f, i) => (
+            <div
+              key={i}
+              style={{
+                ...styles.featureCard,
+                ...(hoveredIndex === i ? styles.featureCardHover : {}),
+              }}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {f.icon}
+              <h3 style={styles.featureTitle}>{f.title}</h3>
+              <p style={styles.featureDesc}>{f.desc}</p>
+            </div>
+          ))}
+        </section>
+<div style={{ textAlign: "center", marginBottom: "2rem" }}>
+  <h1 >whats new?</h1>
+  <p>Adjunct is the new messanging app ,which has the AI intelligence and perform the action unlike the other.
+    It performs the tasks like the messaging,searching, custom commands like send emails and other things.
+  </p>
+</div>
+
+        {/* SECOND FEATURES SQUARE-LIKE LAYOUT */}
+        <section style={styles.secondFeaturesContainer}>
+          {/* Big block on left */}
+          <div
+            style={{
+              ...styles.bigBlock,
+              ...(hoveredSecondIndex === 0 ? styles.featureCardHover : {}),
+            }}
+            onMouseEnter={() => setHoveredSecondIndex(0)}
+            onMouseLeave={() => setHoveredSecondIndex(null)}
+          >
+            {secondFeatures[0].icon}
+            <h3 style={styles.featureTitle}>{secondFeatures[0].title}</h3>
+            <p style={styles.featureDesc}>{secondFeatures[0].desc}</p>
+          </div>
+
+          {/* Four smaller stacked blocks on right */}
+          <div style={styles.smallBlocksContainer}>
+            {secondFeatures.slice(1).map((f, i) => (
+              <div
+                key={i + 1}
+                style={{
+                  ...styles.smallBlock,
+                  ...(hoveredSecondIndex === i + 1
+                    ? styles.featureCardHover
+                    : {}),
+                }}
+                onMouseEnter={() => setHoveredSecondIndex(i + 1)}
+                onMouseLeave={() => setHoveredSecondIndex(null)}
+              >
+                {f.icon}
+                <h3 style={styles.featureTitle}>{f.title}</h3>
+                <p style={styles.featureDesc}>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer style={styles.footer}>
+          <div style={styles.footerLinks}>
+          
+            
+            <a href="#" style={{ color: "#aaa" }}>
+              Privacy
+            </a>
+            <a href="#" style={{ color: "#aaa" }}>
+              Terms
+            </a>
+          </div>
+          <p>email us at adjunctpa@gmail.com </p>
+        </footer>
+      </div>
     </div>
   );
 }
