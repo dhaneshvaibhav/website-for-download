@@ -1,7 +1,8 @@
 import React from "react";
 import {Menu, X, Lock, Bot, Smartphone, Cog, Brain, Command, RefreshCw } from "lucide-react";
 import logoImg from "./assets/logo.png";
-import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-preview.png"; 
+import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-preview.png";
+import DocsPage from "./DocsPage"; 
 
 export default function App() {
   const fontFamily = "'Times New Roman', Times, serif, kreon";
@@ -69,6 +70,30 @@ export default function App() {
       .popup-form {
         -ms-overflow-style: none;
         scrollbar-width: none;
+      }
+      
+      @keyframes button3DFloat {
+        0%, 100% {
+          transform: translateY(0) rotateX(0deg);
+        }
+        50% {
+          transform: translateY(-3px) rotateX(2deg);
+        }
+      }
+      
+      .button-3d {
+        animation: button3DFloat 3s ease-in-out infinite;
+      }
+      
+      .button-3d:hover {
+        animation: none;
+        transform: translateY(-4px) rotateX(5deg) scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.4);
+      }
+      
+      .button-3d:active {
+        transform: translateY(1px) rotateX(0deg) scale(0.98);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
     `,
     contentWrapper: {
@@ -145,6 +170,10 @@ export default function App() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      position: "relative",
+      transform: "translateY(0)",
+      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2)",
     },
     buttonSecondary: {
       paddingTop: "0.75rem",
@@ -161,6 +190,14 @@ export default function App() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+    },
+    buttonPrimaryHover: {
+      transform: "translateY(-2px)",
+      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3)",
+    },
+    buttonPrimaryActive: {
+      transform: "translateY(1px)",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2)",
     },
     heroWrapper: {
       maxWidth: "800px",
@@ -240,6 +277,7 @@ export default function App() {
       justifyContent: "center",
       alignItems: "center",
       zIndex: 1000,
+      marginTop: "-150px",
     },
     popupForm: {
       backgroundColor: "#0d0d0d",
@@ -252,6 +290,22 @@ export default function App() {
       overflowY: "auto",
       boxShadow: "0 20px 40px rgba(0, 0, 0, 0.8)",
       position: "relative",
+      // Hide scrollbar for webkit browsers
+      scrollbarWidth: "none", // Firefox
+      msOverflowStyle: "none", // IE and Edge
+    },
+    successPopup: {
+      backgroundColor: "#0d0d0d",
+      border: "2px solid #fff",
+      padding: "2.5rem",
+      borderRadius: "12px",
+      maxWidth: "500px",
+      width: "95%",
+      maxHeight: "90vh",
+      overflowY: "auto",
+      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.8)",
+      position: "relative",
+      animation: "successPopupFadeIn 0.5s ease-out",
       // Hide scrollbar for webkit browsers
       scrollbarWidth: "none", // Firefox
       msOverflowStyle: "none", // IE and Edge
@@ -311,6 +365,50 @@ export default function App() {
       gap: "1rem",
       marginTop: "2rem",
       justifyContent: "center",
+    },
+    successIcon: {
+      fontSize: "4rem",
+      marginBottom: "1.5rem",
+      textAlign: "center",
+      animation: "successIconBounce 0.6s ease-out 0.2s both",
+    },
+    successTitle: {
+      fontSize: "2rem",
+      fontWeight: "700",
+      color: "#f5f5f5",
+      marginBottom: "1.5rem",
+      textAlign: "center",
+      textShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
+    },
+    successMessage: {
+      fontSize: "1.1rem",
+      color: "#f5f5f5",
+      marginBottom: "1rem",
+      lineHeight: "1.6",
+      textAlign: "center",
+    },
+    successSubMessage: {
+      fontSize: "0.95rem",
+      color: "#ccc",
+      marginBottom: "2rem",
+      lineHeight: "1.5",
+      textAlign: "center",
+    },
+    successButton: {
+      backgroundColor: "white",
+      color: "black",
+      border: "none",
+      padding: "0.75rem 1rem",
+      borderRadius: "6px",
+      fontSize: "0.9rem",
+      fontWeight: "600",
+      cursor: "pointer",
+      transition: "all 0.3s ease",
+      height: "40px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      margin: "0 auto",
     },
 
     // New styles for the second features section container
@@ -424,13 +522,52 @@ export default function App() {
       display: "block",
       transition: "color 0.2s ease",
     },
+    logoAnimationContainer: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "#0d0d0d",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1000,
+      transition: "opacity 0.5s ease-out",
+    },
+    animatedLogo: {
+      display: "flex",
+      alignItems: "center",
+      gap: "1rem",
+      animation: "logoMove 2s ease-in-out forwards",
+    },
+    logoImage: {
+      height: "80px",
+      width: "auto",
+      filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))",
+    },
+    logoText: {
+      fontSize: "3rem",
+      fontWeight: "700",
+      color: "#ffffff",
+      textShadow: "0 0 20px rgba(255, 255, 255, 0.5)",
+    },
+    mainContentContainer: {
+      opacity: 0,
+      transform: "translateY(20px)",
+      transition: "all 0.8s ease-out",
+    },
   };
 
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
   const [hoveredSecondIndex, setHoveredSecondIndex] = React.useState(null);
   const [showPopup, setShowPopup] = React.useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [isMobileView, setIsMobileView] = React.useState(false);
+  const [showDocsPage, setShowDocsPage] = React.useState(false);
+  const [showLogoAnimation, setShowLogoAnimation] = React.useState(true);
+  const [showMainContent, setShowMainContent] = React.useState(false);
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -454,6 +591,16 @@ export default function App() {
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Logo animation effect
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLogoAnimation(false);
+      setShowMainContent(true);
+    }, 2000); // Animation duration
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Inject global styles for hiding scrollbars
@@ -653,8 +800,8 @@ This submission was also saved locally in the browser.
       console.log('Form submitted successfully:', formData);
       console.log('Email link prepared:', mailtoLink);
       
-      // Show success message
-      alert('Thank you for joining the waitlist! We\'ll be in touch soon.\n\nYour submission has been saved and an email notification has been prepared.');
+      // Show success popup
+      setShowSuccessPopup(true);
       setShowPopup(false);
       setFormData({ name: '', email: '', phone: '', reason: '', referral: '' });
       
@@ -665,7 +812,7 @@ This submission was also saved locally in the browser.
       console.error('Submission error:', error);
       
       // Since we already saved to localStorage, we can still show success
-      alert('Thank you for joining the waitlist! We\'ll be in touch soon.\n\nYour submission has been saved locally.');
+      setShowSuccessPopup(true);
       setShowPopup(false);
       setFormData({ name: '', email: '', phone: '', reason: '', referral: '' });
     }
@@ -698,13 +845,7 @@ This submission was also saved locally in the browser.
     }
   };
 
-  // Function to clear stored submissions
-  const clearStoredSubmissions = () => {
-    if (confirm('Are you sure you want to clear all stored submissions?')) {
-      localStorage.removeItem('waitlistSubmissions');
-      alert('All stored submissions have been cleared.');
-    }
-  };
+
 
   // Close mobile menu on escape key
   React.useEffect(() => {
@@ -726,22 +867,90 @@ This submission was also saved locally in the browser.
   };
 
   return (
-    <div style={styles.container}>
-      {/* HEADER */}
-      <header style={styles.header}>
+    <>
+      <style>
+        {`
+          @keyframes logoMove {
+            0% {
+              transform: translate(-100vw, -100vh) scale(0.3);
+              opacity: 0;
+            }
+            50% {
+              transform: translate(0, 0) scale(1.2);
+              opacity: 1;
+            }
+            100% {
+              transform: translate(0, 0) scale(1);
+              opacity: 1;
+            }
+          }
+        `}
+      </style>
+
+      {/* Logo Animation Overlay */}
+      {showLogoAnimation && (
+        <div style={styles.logoAnimationContainer}>
+          <div style={styles.animatedLogo}>
+            <img 
+              src={logoImg} 
+              alt="Adjunct Logo" 
+              style={styles.logoImage}
+            />
+            <span style={styles.logoText}>djunct</span>
+          </div>
+        </div>
+      )}
+
+      {/* Main App Content */}
+      <div style={{
+        ...styles.mainContentContainer,
+        ...(showMainContent && {
+          opacity: 1,
+          transform: "translateY(0)",
+        }),
+      }}>
+        <div style={styles.container}>
+          {/* HEADER */}
+          <header style={styles.header}>
         <div style={styles.headerContent}>
           {/* Left: logo + navigation */}
           <div style={responsiveStyles.leftSection}>
-            <div style={responsiveStyles.logo}>
+            <div 
+              style={{...responsiveStyles.logo, cursor: "pointer"}}
+              onClick={() => {
+                setShowDocsPage(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
               <img src={logoImg} alt="Logo" style={{ height: "40px", width: "auto" }} />
               <span style={{fontSize: "32px", fontWeight: "600", color: "#f5f5f5", display: "flex", alignItems: "center", lineHeight: "1"}}>djunct</span>
             </div>
             {/* Desktop Navigation */}
             {!isMobileView && (
               <nav style={styles.nav}>
-                <a href="#docs" style={styles.navLink}>Docs</a>
-                <a href="#about" style={styles.navLink}>About</a>
-                <a href="#contact" style={styles.navLink}>Contact</a>
+                <a 
+                  style={{...styles.navLink, cursor: "pointer"}}
+                  onClick={() => setShowDocsPage(true)}
+                >
+                  Documentation
+                </a>
+                <a 
+                  style={{...styles.navLink, cursor: "pointer"}}
+                  onClick={() => {
+                    const whatsNewSection = document.getElementById('whats-new');
+                    if (whatsNewSection) {
+                      whatsNewSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  About
+                </a>
+                <a 
+                  style={{...styles.navLink, cursor: "pointer"}}
+                  onClick={() => document.querySelector('footer').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Contact
+                </a>
               </nav>
             )}
           </div>
@@ -749,6 +958,7 @@ This submission was also saved locally in the browser.
           {/* Right: CTA + Mobile Menu */}
           <div style={responsiveStyles.rightSection}>
             <button 
+              className="button-3d"
               style={responsiveStyles.buttonSecondary}
               onClick={() => setShowPopup(true)}
             >
@@ -780,13 +990,37 @@ This submission was also saved locally in the browser.
             style={styles.mobileMenu}
           >
             <div style={styles.mobileNav}>
+              <a 
+                style={{...styles.mobileNavLink, cursor: "pointer"}}
+                onClick={() => {
+                  closeMobileMenu();
+                  setShowDocsPage(true);
+                }}
+              >
+                Documentation
+              </a>
               <a href="#features" style={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Features
               </a>
-              <a href="#about" style={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <a 
+                style={{...styles.mobileNavLink, cursor: "pointer"}}
+                onClick={() => {
+                  closeMobileMenu();
+                  const whatsNewSection = document.getElementById('whats-new');
+                  if (whatsNewSection) {
+                    whatsNewSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 About
               </a>
-              <a href="#contact" style={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <a 
+                style={{...styles.mobileNavLink, cursor: "pointer"}}
+                onClick={() => {
+                  closeMobileMenu();
+                  document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Contact
               </a>
             </div>
@@ -794,8 +1028,13 @@ This submission was also saved locally in the browser.
         )}
       </header>
 
-      {/* MAIN CONTENT */}
-      <div style={styles.contentWrapper}>
+      {/* Show Docs Page or Main Content */}
+      {showDocsPage ? (
+        <DocsPage onBack={() => setShowDocsPage(false)} />
+      ) : (
+        <>
+          {/* MAIN CONTENT */}
+          <div style={styles.contentWrapper}>
         {/* HERO */}
         <div style={styles.heroWrapper}>
           <section style={responsiveStyles.hero}>
@@ -809,6 +1048,7 @@ This submission was also saved locally in the browser.
               performance.
             </p>
             <button 
+              className="button-3d"
               style={responsiveStyles.buttonPrimary}
               onClick={() => setShowPopup(true)}
             >
@@ -835,7 +1075,7 @@ This submission was also saved locally in the browser.
             </div>
           ))}
         </section>
-<div style={{ textAlign: "center", marginBottom: "2rem" }}>
+<div id="whats-new" style={{ textAlign: "center", marginBottom: "2rem" }}>
   <h1 >whats new?</h1>
   <p>Adjunct is the new messanging app ,which has the AI intelligence and perform the action unlike the other.
     It performs the tasks like the messaging,searching, custom commands like send emails and other things.
@@ -936,31 +1176,26 @@ This submission was also saved locally in the browser.
             >
               View Submissions
             </button>
-            <button 
-              onClick={clearStoredSubmissions}
-              style={{ 
-                backgroundColor: "transparent", 
-                border: "1px solid #666", 
-                color: "#666", 
-                padding: "0.25rem 0.5rem",
-                cursor: "pointer",
-                fontSize: "0.8rem"
-              }}
-            >
-              Clear Submissions
-            </button>
           </div>
         </footer>
-      </div>
+          </div>
+        </>
+      )}
 
       {/* POPUP FORM */}
       {showPopup && (
         <div style={styles.popupOverlay} onClick={handleClosePopup}>
-          <div 
-            className="popup-form"
-            style={responsiveStyles.popupForm} 
-            onClick={(e) => e.stopPropagation()}
-          >
+                      <div 
+              className="popup-form"
+              style={{
+                ...responsiveStyles.popupForm,
+                position: "absolute",
+                left: "50%",
+                top: isMobileView ? "50%" : "10%",
+                transform: isMobileView ? "translate(-50%, -50%)" : "translateX(-50%)",
+              }} 
+              onClick={(e) => e.stopPropagation()}
+            >
             <h2 style={responsiveStyles.popupTitle}>Join the Waitlist</h2>
             <form onSubmit={handleSubmit}>
               <div style={styles.formGroup}>
@@ -1070,6 +1305,42 @@ This submission was also saved locally in the browser.
           </div>
         </div>
       )}
-    </div>
+
+      {/* SUCCESS POPUP */}
+      {showSuccessPopup && (
+        <div style={styles.popupOverlay} onClick={() => setShowSuccessPopup(false)}>
+          <div 
+            className="success-popup"
+            style={{
+              ...styles.successPopup,
+              position: "absolute",
+              left: "50%",
+              top: isMobileView ? "50%" : "10%",
+              transform: isMobileView ? "translate(-50%, -50%)" : "translateX(-50%)",
+            }} 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={styles.successTitle}>Thank You!</h2>
+            <div style={styles.successIcon}>✅</div>
+            <p style={styles.successMessage}>
+              You've successfully joined the Adjunct waitlist! We're excited to have you on board.
+            </p>
+            <p style={styles.successSubMessage}>
+              We'll be in touch soon with updates about our launch. Your submission has been saved and you'll receive notifications about our progress.
+            </p>
+            <div style={styles.formButtons}>
+              <button 
+                style={styles.successButton}
+                onClick={() => setShowSuccessPopup(false)}
+              >
+                Got it!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+        </div>
+      </div>
+    </>
   );
 }
