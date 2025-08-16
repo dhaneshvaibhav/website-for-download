@@ -5,7 +5,7 @@ import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-previe
 import DocsPage from "./DocsPage"; 
 
 export default function App() {
-  const fontFamily = "'Times New Roman', Times, serif, kreon";
+  const fontFamily = "kreon, serif";
   const fontWeightNormal = "400";
 
   const features = [
@@ -99,7 +99,7 @@ export default function App() {
     contentWrapper: {
       maxWidth: "1100px",
       margin: "0 auto",
-      fontFamily: "Kreon",
+      fontFamily,
       padding: "0 1rem",
       overflowX: "hidden",
       paddingTop: "64px",
@@ -119,7 +119,7 @@ export default function App() {
     headerContent: {
       margin: "0 auto",
       padding: "0 1rem",
-      fontFamily: "kreon",
+      fontFamily,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -1075,7 +1075,7 @@ This submission was also saved locally in the browser.
             </div>
           ))}
         </section>
-<div id="whats-new" style={{ textAlign: "center", marginBottom: "2rem" }}>
+<div id="whats-new" style={{ textAlign: "center", marginBottom: "2rem", fontFamily: "kreon, serif" }}>
   <h1 >whats new?</h1>
   <p>Adjunct is the new messanging app ,which has the AI intelligence and perform the action unlike the other.
     It performs the tasks like the messaging,searching, custom commands like send emails and other things.
@@ -1132,6 +1132,41 @@ This submission was also saved locally in the browser.
             ))}
           </div>
         </section>
+
+        {/* ABOUT US SECTION */}
+        <div id="whats-new" style={{ textAlign: "center", marginBottom: "2rem", fontFamily: "kreon, serif" }}>
+          <h1 style={{ color: "#f5f5f5", fontSize: "2.5rem", marginBottom: "1.5rem" }}>About Us</h1>
+          <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "left" }}>
+            <h2 style={{ color: "#22c55e", fontSize: "1.8rem", marginBottom: "1rem" }}>🎉 Adjunct - Real Time Messaging Platform</h2>
+            
+            <p style={{ fontSize: "1.1rem", lineHeight: "1.6", color: "#ccc", marginBottom: "1.5rem" }}>
+              We are glad to announce the successful completion of our web development project for <strong style={{ color: "#22c55e" }}>Adjunct</strong>.
+            </p>
+
+            
+            <div style={{ backgroundColor: "#1a1a1a", padding: "1.5rem", borderRadius: "8px", border: "1px solid #333", marginBottom: "1.5rem" }}>
+              <h3 style={{ color: "#f5f5f5", fontSize: "1.3rem", marginBottom: "1rem" }}>🚀 Our Journey</h3>
+              <p style={{ color: "#ccc", lineHeight: "1.6", marginBottom: "1rem" }}>
+                We started our journey as a team of two passionate individuals who shared the vision of creating impactful projects and exploring new ideas. As students, we began with web development, building small projects that, although not fully successful, laid the foundation for our technical skills and boosted our confidence. These early experiences taught us that with persistence, we could learn and build anything practically, even with free resources.
+              </p>
+              <p style={{ color: "#ccc", lineHeight: "1.6" }}>
+              With this vision, we created our first website and launched it. However, it did not receive the expected response, and we encountered several technical challenges and bugs. Instead of seeing this as a failure, we treated it as a learning step and moved forward.
+              </p>
+              <p style={{ color: "#ccc", lineHeight: "1.6" }}>
+              As our team grew with the addition of a new member, we expanded our vision. We experimented with creating a user-friendly WhatsApp bot, though we faced challenges with verification and scalability. This pushed us to think differently — to build a standalone messaging platform that users could personalize, offering both convenience and privacy while integrating AI as a personal assistant.
+              </p>
+              <p style={{ color: "#ccc", lineHeight: "1.6" }}>
+              This marks our journey so far: from experimenting with early projects, to envisioning and building Adjunct, and continuously learning, improving, and adapting to create a product that truly helps people manage their work and lives more effectively.
+              </p>
+            </div>
+            
+            <div style={{ textAlign: "center", marginTop: "2rem", fontFamily: "kreon, serif" }}>
+              <p style={{ color: "#22c55e", fontSize: "1.1rem", fontStyle: "italic" }}>
+                "Success is not final, failure is not fatal: it is the courage to continue that counts." - Winston Churchill
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* FOOTER */}
         <footer style={styles.footer}>

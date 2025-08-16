@@ -38,13 +38,13 @@ export default function DocsPage({ onBack }) {
   }, [notificationTimer]);
   
   const styles = {
-    container: {
-      backgroundColor: "#0d0d0d",
-      minHeight: "100vh",
-      color: "#f5f5f5",
-      padding: "2rem",
-      fontFamily: "'Times New Roman', Times, serif, kreon",
-    },
+         container: {
+       backgroundColor: "#0d0d0d",
+       minHeight: "100vh",
+       color: "#f5f5f5",
+       padding: "2rem",
+       fontFamily: "kreon, serif",
+     },
     header: {
       display: "flex",
       alignItems: "center",
@@ -597,7 +597,7 @@ export default function DocsPage({ onBack }) {
          
          <div style={styles.footerBottom}>
            <p style={styles.footerCopyright}>
-             © 2024 Adjunct. All rights reserved. | Made with ❤️ in India
+             © 2025 Adjunct. All rights reserved. | Made with ❤️ in India
            </p>
          </div>
        </footer>
