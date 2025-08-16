@@ -34,19 +34,19 @@ export default function App() {
   const secondFeatures = [
     {
       icon: <Code2 size={32} color="#e5e7eb" />,
-      title: "Block 1 - Large Vertical",
+      title: "AI-Powered Interface",
       image: "./assets/Screenshot_2025-08-15_175401-removebg-preview.png",
-      desc: "Tall rectangular block representing something big.",
+      desc: "Experience the future of messaging with our intelligent AI interface. Seamlessly integrated AI that understands context, learns your preferences, and adapts to your communication style.",
     },
     {
       icon: <Terminal size={32} color="#e5e7eb" />,
-      title: "Block 2",
-      desc: "Square block",
+      title: "Custom Commands",
+      desc: "Execute powerful commands with natural language. Send emails, search the web, set reminders, and automate tasks using simple text commands.",
     },
     {
       icon: <Plane size={32} color="#e5e7eb" />,
-      title: "Block 3",
-      desc: "Square block",
+      title: "Real-time Sync",
+      desc: "Instant synchronization across all your devices. Your conversations, settings, and AI preferences stay in sync wherever you go.",
     },
     
   ];
@@ -317,9 +317,9 @@ export default function App() {
     secondFeaturesContainer: {
       display: "flex",
       gap: "1.5rem",
-      padding: "2rem 0",
-      // Fixed height to make big block and smaller blocks same height
-      height: "440px",
+      padding: "3rem 0",
+      // Increased height to make big block taller
+      height: "600px",
     },
     bigBlock: {
       flex: 2,
@@ -493,7 +493,7 @@ export default function App() {
       secondFeaturesContainer: {
         ...styles.secondFeaturesContainer,
         flexDirection: mobile ? "column" : "row",
-        height: mobile ? "auto" : "440px",
+        height: mobile ? "auto" : "600px",
         gap: mobile ? "1rem" : "1.5rem",
       },
       bigBlock: {
@@ -903,7 +903,22 @@ This submission was also saved locally in the browser.
               Terms
             </a>
           </div>
-          <p>email us at adjunctpa@gmail.com </p>
+          
+          {/* Contact Information */}
+          <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+            <h3 style={{ color: "#f5f5f5", fontSize: "1.1rem", marginBottom: "1rem" }}>Contact Us</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Email:</strong> adjunctpa@gmail.com
+              </p>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Location:</strong> India
+              </p>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Support:</strong> Available 24/7
+              </p>
+            </div>
+          </div>
           
           {/* Debug/Admin Section - Remove in production */}
           <div style={{ marginTop: "1rem", fontSize: "0.8rem", opacity: 0.7 }}>
