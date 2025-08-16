@@ -1,5 +1,5 @@
 import React from "react";
-import { Terminal, Plane, Code2, Menu, X, Lock, Bot, Smartphone, Cog } from "lucide-react";
+import {Menu, X, Lock, Bot, Smartphone, Cog, Brain, Command, RefreshCw } from "lucide-react";
 import logoImg from "./assets/logo.png";
 import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-preview.png"; 
 
@@ -33,18 +33,18 @@ export default function App() {
   // Second features for the special square layout
   const secondFeatures = [
     {
-      icon: <Code2 size={32} color="#e5e7eb" />,
+      icon: <Brain size={32} color="#e5e7eb" />,
       title: "AI-Powered Interface",
       image: "./assets/Screenshot_2025-08-15_175401-removebg-preview.png",
       desc: "Experience the future of messaging with our intelligent AI interface. Seamlessly integrated AI that understands context, learns your preferences, and adapts to your communication style.",
     },
     {
-      icon: <Terminal size={32} color="#e5e7eb" />,
+      icon: <Command size={32} color="#e5e7eb" />,
       title: "Custom Commands",
       desc: "Execute powerful commands with natural language. Send emails, search the web, set reminders, and automate tasks using simple text commands.",
     },
     {
-      icon: <Plane size={32} color="#e5e7eb" />,
+      icon: <RefreshCw size={32} color="#e5e7eb" />,
       title: "Real-time Sync",
       desc: "Instant synchronization across all your devices. Your conversations, settings, and AI preferences stay in sync wherever you go.",
     },
