@@ -733,8 +733,8 @@ This submission was also saved locally in the browser.
           {/* Left: logo + navigation */}
           <div style={responsiveStyles.leftSection}>
             <div style={responsiveStyles.logo}>
-              <img src={logoImg} alt="Logo" style={{ height: "32px", width: "auto" }} />
-              <span style={{fontSize: responsiveStyles.logo.fontSize || "1.2rem", fontWeight: "600", color: "#f5f5f5", marginLeft: "0.5rem", display: "flex", alignItems: "center", lineHeight: "1"}}>djunct</span>
+              <img src={logoImg} alt="Logo" style={{ height: "40px", width: "auto" }} />
+              <span style={{fontSize: "32px", fontWeight: "600", color: "#f5f5f5", display: "flex", alignItems: "center", lineHeight: "1"}}>djunct</span>
             </div>
             {/* Desktop Navigation */}
             {!isMobileView && (
