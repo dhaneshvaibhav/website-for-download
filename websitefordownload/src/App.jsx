@@ -1229,7 +1229,7 @@ This submission was also saved locally in the browser.
                 position: "absolute",
                 left: "50%",
                 top: isMobileView ? "14%" : "75%",
-                transform: isMobileView ? "translate(-50%, -50%)" : "translateX(-50%)",
+                transform: isMobileView ? "translate(-50%, -50%)" : "translate(-50%, -335%)" ,
               }} 
               onClick={(e) => e.stopPropagation()}
             >
