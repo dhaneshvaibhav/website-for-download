@@ -1,5 +1,5 @@
 import React from "react";
-import {Menu, X, Lock, Bot, Smartphone, Cog, Brain, Command, RefreshCw } from "lucide-react";
+import {Menu, X, Lock, Bot, Smartphone, MessagesSquare, Brain, Command, RefreshCw, } from "lucide-react";
 import logoImg from "./assets/logo.png";
 import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-preview.png";
 import DocsPage from "./DocsPage"; 
@@ -10,9 +10,9 @@ export default function App() {
 
   const features = [
     {
-      icon: <Lock size={32} color="#22c55e" />,
-      title: "Privacy",
-      desc: "Asymmetric encryption ensures your messages are secure. Public key cryptography protects your data with mathematical complexity that's virtually unbreakable.",
+      icon: <MessagesSquare size={32} color="#22c55e" />,
+      title: "Dynamic Messaging",
+      desc: "The Adjunct offers a dynamic chat facility with seamless mode-switching capabilities—ranging from privacy-focused to compatibility-enhanced modes. It ensures secure and reliable messaging, allowing users to communicate safely and confidently.",
     },
     {
       icon: <Bot size={32} color="#e5e7eb" />,
@@ -20,14 +20,14 @@ export default function App() {
       desc: "Your AI assistant that sends emails, crafts messages, summarizes text, and handles tasks automatically. Let AI do the heavy lifting while you focus on what matters most.",
     },
     {
+      icon: <Lock size={32}  color="#e5e7eb" />,
+      title: "Privacy",
+      desc: "Asymmetric encryption ensures your messages are secure. Public key cryptography protects your data with mathematical complexity that's virtually unbreakable.",
+    },
+    {
       icon: <Smartphone size={32} color="#e5e7eb" />,
       title: "App Details",
       desc: "The revolutionary messaging app with AI intelligence that goes beyond simple chat. Send emails, search information, execute custom commands, and let AI handle complex tasks automatically. Experience messaging reimagined.",
-    },
-    {
-      icon: <Cog size={32} color="#e5e7eb" />,
-      title: "Smart Automation",
-      desc: "Let AI handle your daily tasks. From scheduling meetings to managing emails, Adjunct learns your workflow and automates repetitive tasks, giving you more time to focus on what matters.",
     },
   ];
 
@@ -548,9 +548,11 @@ export default function App() {
     },
     logoText: {
       fontSize: "3rem",
-      fontWeight: "700",
+      fontWeight: "600",
       color: "#ffffff",
       textShadow: "0 0 20px rgba(255, 255, 255, 0.5)",
+      display: "flex", 
+      lineHeight: "1"
     },
     mainContentContainer: {
       opacity: 0,
@@ -932,7 +934,7 @@ This submission was also saved locally in the browser.
                   style={{...styles.navLink, cursor: "pointer"}}
                   onClick={() => setShowDocsPage(true)}
                 >
-                  Documentation
+                  Manual
                 </a>
                 <a 
                   style={{...styles.navLink, cursor: "pointer"}}
@@ -997,7 +999,7 @@ This submission was also saved locally in the browser.
                   setShowDocsPage(true);
                 }}
               >
-                Documentation
+                Manual
               </a>
               <a href="#features" style={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Features
@@ -1226,7 +1228,7 @@ This submission was also saved locally in the browser.
                 ...responsiveStyles.popupForm,
                 position: "absolute",
                 left: "50%",
-                top: isMobileView ? "50%" : "10%",
+                top: isMobileView ? "14%" : "75%",
                 transform: isMobileView ? "translate(-50%, -50%)" : "translateX(-50%)",
               }} 
               onClick={(e) => e.stopPropagation()}

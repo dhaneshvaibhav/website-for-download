@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 
 const AccordionContext = createContext();
 
-export const Accordion = ({ children, type = "single", collapsible = true }) => {
+export const Accordion = ({ children, collapsible = true }) => {
   const [openValue, setOpenValue] = useState(null);
 
   const toggleItem = (value) => {
