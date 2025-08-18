@@ -295,16 +295,6 @@ export default function DocsPage({ onBack }) {
      footerLinkHover: {
        color: "#4ade80",
      },
-     footerBottom: {
-       borderTop: "1px solid #333",
-       paddingTop: "1.5rem",
-       textAlign: "center",
-     },
-     footerCopyright: {
-       fontSize: "0.9rem",
-       color: "#666",
-       margin: 0,
-     },
    };
 
   return (
@@ -430,9 +420,6 @@ export default function DocsPage({ onBack }) {
              <p>Here are some useful commands you can try:</p>
              <div style={styles.codeBlock}>
                /ai - Call AI assistant and give commands
-               /email - Send an email to a contact
-               /remind - Set a reminder for later
-               /summarize - Summarize a long message
              </div>
              <p>
                Simply type these commands in any chat, and our AI will handle the rest. 
@@ -444,10 +431,10 @@ export default function DocsPage({ onBack }) {
                Use <span style={styles.highlight}>/ai</span> to directly interact with our AI assistant:
              </p>
              <div style={styles.codeBlock}>
-               /ai send email to john@example.com about meeting tomorrow
-               /ai search for latest news about AI technology
-               /ai create a reminder for dentist appointment next Friday
-               /ai summarize the document I just shared
+               /ai send email to john@example.com about meeting tomorrow<br />
+               /ai search for latest news about AI technology<br />
+               /ai create a reminder for dentist appointment next Friday<br />
+               /ai summarize the document I just shared<br />
                /ai help me draft a professional email
              </div>
              <p>
@@ -497,10 +484,8 @@ export default function DocsPage({ onBack }) {
                   <p>Grant necessary permissions for:</p>
                   <ul style={styles.permissionList}>
                     <li>Contacts - to sync your address book</li>
-                    <li>Camera - for photo sharing and video calls</li>
-                    <li>Microphone - for voice messages and calls</li>
-                    <li>Storage - for media file access</li>
-                    <li>Location - for location sharing (optional)</li>
+                      <li>Storage - for media file access</li>
+                    <li>Notifications - to receive real-time updates</li>
                   </ul>
                 </div>
               </div>
@@ -546,9 +531,8 @@ export default function DocsPage({ onBack }) {
             </div>
           </div>
         </div>
-
-                 </div>
        </div>
+      </div>
        
        {/* Footer */}
        <footer style={styles.footer}>
@@ -593,12 +577,6 @@ export default function DocsPage({ onBack }) {
                Secure, smart, and seamless communication.
              </p>
            </div>
-         </div>
-         
-         <div style={styles.footerBottom}>
-           <p style={styles.footerCopyright}>
-             © 2025 Adjunct. All rights reserved. | Made with ❤️ in India
-           </p>
          </div>
        </footer>
      </>
