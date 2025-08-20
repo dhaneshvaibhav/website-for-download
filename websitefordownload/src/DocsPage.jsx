@@ -430,13 +430,6 @@ export default function DocsPage({ onBack }) {
              <p>
                Use <span style={styles.highlight}>/ai</span> to directly interact with our AI assistant:
              </p>
-             <div style={styles.codeBlock}>
-               /ai send email to john@example.com about meeting tomorrow<br />
-               /ai search for latest news about AI technology<br />
-               /ai create a reminder for dentist appointment next Friday<br />
-               /ai summarize the document I just shared<br />
-               /ai help me draft a professional email
-             </div>
              <p>
                The <span style={styles.highlight}>/ai</span> command is your direct line to AI assistance. 
                Just type "/ai" followed by your request, and our intelligent assistant will understand 
@@ -536,49 +529,31 @@ export default function DocsPage({ onBack }) {
        
        {/* Footer */}
        <footer style={styles.footer}>
-         <div style={styles.footerContent}>
-           <div style={styles.footerSection}>
-             <h3 style={styles.footerTitle}>Support</h3>
-             <p style={styles.footerText}>
-               Need help? Our support team is available 24/7 to assist you with any questions or issues.
-             </p>
-             <ul style={styles.footerList}>
-               <li style={styles.footerListItem}>
-                 <strong>Email:</strong> adjunctpa@gmail.com
-               </li>
-               <li style={styles.footerListItem}>
-                 <strong>Location:</strong> India
-               </li>
-               <li style={styles.footerListItem}>
-                 <strong>Response Time:</strong> Within 2 hours
-               </li>
-             </ul>
-           </div>
-           
-           <div style={styles.footerSection}>
-             <h3 style={styles.footerTitle}>Quick Links</h3>
-             <ul style={styles.footerList}>
-               <li style={styles.footerListItem}>
-                 <a href="#" style={styles.footerLink} onClick={onBack}>← Back to Home</a>
-               </li>
-               <li style={styles.footerListItem}>
-                 <a href="#getting-started" style={styles.footerLink}>Getting Started</a>
-               </li>
-               <li style={styles.footerListItem}>
-                 <a href="#privacy-security" style={styles.footerLink}>Privacy & Security</a>
-               </li>
-             </ul>
-           </div>
-           
-           <div style={styles.footerSection}>
-             <h3 style={styles.footerTitle}>Adjunct</h3>
-             <p style={styles.footerText}>
-               Revolutionary messaging platform with AI intelligence. 
-               Secure, smart, and seamless communication.
-             </p>
-           </div>
-         </div>
-       </footer>
+          <div style={styles.footerLinks}>
+            <a href="#" style={{ color: "#aaa" }}>
+              Privacy
+            </a>
+            <a href="#" style={{ color: "#aaa" }}>
+              Terms
+            </a>
+          </div>
+          
+          {/* Contact Information */}
+          <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+            <h3 style={{ color: "#f5f5f5", fontSize: "1.1rem", marginBottom: "1rem" }}>Contact Us</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Email:</strong> feedback@adjunct.in
+              </p>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Location:</strong> India
+              </p>
+              <p style={{ color: "#ccc", margin: "0" }}>
+                <strong>Support:</strong> Available 24/7
+              </p>
+            </div>
+          </div>
+        </footer>
      </>
    );
  }

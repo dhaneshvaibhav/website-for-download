@@ -10,24 +10,24 @@ export default function App() {
 
   const features = [
     {
-      icon: <MessagesSquare size={32} color="#22c55e" />,
+      icon: <MessagesSquare size={32} color="#e5e7eb" />,
       title: "Dynamic Messaging",
       desc: "The Adjunct offers a dynamic chat facility with seamless mode-switching capabilities—ranging from privacy-focused to compatibility-enhanced modes. It ensures secure and reliable messaging, allowing users to communicate safely and confidently.",
     },
     {
       icon: <Bot size={32} color="#e5e7eb" />,
       title: "AI-Powered Intelligence",
-      desc: "Your AI assistant that sends emails, crafts messages, summarizes text, and handles tasks automatically. Let AI do the heavy lifting while you focus on what matters most.",
+      desc: "An intelligent companion designed to simplify your workflow and boost productivity. It streamlines your routine, offering smarter ways to stay organized and efficient. Focus on your priorities while intelligence works seamlessly in the background.",
     },
     {
       icon: <Lock size={32}  color="#e5e7eb" />,
       title: "Privacy",
-      desc: "Asymmetric encryption ensures your messages are secure. Public key cryptography protects your data with mathematical complexity that's virtually unbreakable.",
+      desc: "Your messages are kept safe using asymmetric encryption. This means there are two keys: one public (to lock/encrypt the data) and one private (to unlock/decrypt it). Because of the complex math behind it, hackers cannot realistically break it—making your communication secure",
     },
     {
       icon: <Smartphone size={32} color="#e5e7eb" />,
-      title: "App Details",
-      desc: "The revolutionary messaging app with AI intelligence that goes beyond simple chat. Send emails, search information, execute custom commands, and let AI handle complex tasks automatically. Experience messaging reimagined.",
+      title: "Why Adjunct?",
+      desc: "A next-generation messaging experience powered by intelligence that adapts to you. It transforms everyday interactions into something smarter, smoother, and more intuitive—helping you stay ahead with less effort. Discover a new way to connect.",
     },
   ];
 
@@ -51,6 +51,8 @@ export default function App() {
     },
     
   ];
+const [reviews, setReviews] = useState([]); // store all reviews locally
+const [reviewData, setReviewData] = useState({ name: "", review: "" });
 
   const styles = {
     container: {
@@ -768,44 +770,47 @@ export default function App() {
         timestamp: new Date().toISOString()
       };
 
-      // Method 1: Google Apps Script (original)
-      try {
-        await fetch('https://script.google.com/macros/s/AKfycbwIrB_-BfxtQRqDLkxMvxDgbi3X17F90g0F91xIC8q7e8KgiH5eeZOOzkrc6NhemhHI/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(submissionData)
-        });
-        console.log('Google Apps Script submission attempted');
-      } catch (googleError) {
-        console.log('Google Apps Script failed:', googleError);
-      }
+// Method 1: Google Apps Script (original)
+try {
+  await fetch('https://script.google.com/macros/s/AKfycbwIrB_-BfxtQRqDLkxMvxDgbi3X17F90g0F91xIC8q7e8KgiH5eeZOOzkrc6NhemhHI/exec', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(submissionData)   // can be formData for waitlist OR reviewData for reviews
+  });
+  console.log('Google Apps Script submission attempted');
+} catch (googleError) {
+  console.log('Google Apps Script failed:', googleError);
+}
 
-      // Method 2: Simple email notification (works immediately)
-      const emailBody = `
-New Waitlist Signup:
+// Method 2: Simple email notification (works immediately)
+const emailBody = `
+New Waitlist Signup / Review:
 
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Reason: ${formData.reason}
-Referral: ${formData.referral}
+Name: ${formData?.name || reviewData?.name || "Anonymous"}
+Email: ${formData?.email || "N/A"}
+Phone: ${formData?.phone || "N/A"}
+Reason: ${formData?.reason || "N/A"}
+Referral: ${formData?.referral || "N/A"}
+Review: ${reviewData?.review || "N/A"}
 Timestamp: ${new Date().toLocaleString()}
 
 This submission was also saved locally in the browser.
-      `;
-      
-      const mailtoLink = `mailto:adjunctpa@gmail.com?subject=New Waitlist Signup - ${formData.name}&body=${encodeURIComponent(emailBody)}`;
-      
-      console.log('Form submitted successfully:', formData);
-      console.log('Email link prepared:', mailtoLink);
-      
-      // Show success popup
-      setShowSuccessPopup(true);
-      setShowPopup(false);
-      setFormData({ name: '', email: '', phone: '', reason: '', referral: '' });
+`;
+
+const mailtoLink = `mailto:adjunctpa@gmail.com?subject=New Submission - ${formData?.name || reviewData?.name}&body=${encodeURIComponent(emailBody)}`;
+
+console.log('Form submitted successfully:', formData || reviewData);
+console.log('Email link prepared:', mailtoLink);
+
+// Show success popup
+setShowSuccessPopup(true);
+setShowPopup(false);
+setFormData({ name: '', email: '', phone: '', reason: '', referral: '' });
+setReviewData({review: '', });
+
       
       // Optionally open email client (uncomment to enable)
       // window.open(mailtoLink);
@@ -833,19 +838,7 @@ This submission was also saved locally in the browser.
     setMobileMenuOpen(false);
   };
 
-  // Function to view stored submissions (for debugging)
-  const viewStoredSubmissions = () => {
-    const submissions = JSON.parse(localStorage.getItem('waitlistSubmissions') || '[]');
-    console.log('Stored submissions:', submissions);
-    if (submissions.length > 0) {
-      const submissionList = submissions.map((sub, index) => 
-        `${index + 1}. ${sub.name} (${sub.email}) - ${sub.submittedAt}`
-      ).join('\n');
-      alert(`You have ${submissions.length} stored submissions:\n\n${submissionList}`);
-    } else {
-      alert('No stored submissions found.');
-    }
-  };
+ 
 
 
 
@@ -1041,7 +1034,7 @@ This submission was also saved locally in the browser.
         <div style={styles.heroWrapper}>
           <section style={responsiveStyles.hero}>
             <h1 style={responsiveStyles.heroTitle}>
-              Adjunct is the real time messaging platform with AI Intelligence.
+              Adjunct - Pioneer the Future of AI Communication
             </h1>
             <p style={responsiveStyles.heroText}>
               Human Intelligence, AI Precision, Perfectly Fused. The messaging
@@ -1139,7 +1132,7 @@ This submission was also saved locally in the browser.
         <div id="whats-new" style={{ textAlign: "center", marginBottom: "2rem", fontFamily: "kreon, serif" }}>
           <h1 style={{ color: "#f5f5f5", fontSize: "2.5rem", marginBottom: "1.5rem" }}>About Us</h1>
           <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "left" }}>
-            <h2 style={{ color: "#22c55e", fontSize: "1.8rem", marginBottom: "1rem" }}>🎉 Adjunct - Real Time Messaging Platform</h2>
+            <h2 style={{ color: "#f5f5f5", fontSize: "1.8rem", marginBottom: "1rem" }}>🎉 Adjunct - Worlds First Ai Communication platform</h2>
             
             <p style={{ fontSize: "1.1rem", lineHeight: "1.6", color: "#ccc", marginBottom: "1.5rem" }}>
               We are glad to announce the successful completion of our web development project for <strong style={{ color: "#22c55e" }}>Adjunct</strong>.
@@ -1169,24 +1162,86 @@ This submission was also saved locally in the browser.
             </div>
           </div>
         </div>
+{/* Review box */}
+{/* REVIEW SECTION */}
+<div 
+  style={{ 
+    backgroundColor: "#1a1a1a", 
+    padding: "2rem", 
+    borderRadius: "12px", 
+    border: "1px solid #333", 
+    margin: "3rem auto", 
+    maxWidth: "800px",
+    textAlign: "center",
+    fontFamily: "kreon, serif"
+  }}
+>
+  <h2 style={{ color: "#f5f5f5", fontSize: "2rem", marginBottom: "1rem" }}>
+    ⭐ Share Your Review
+  </h2>
+  <p style={{ color: "#ccc", marginBottom: "1.5rem" }}>
+    We'd love to hear your thoughts about <strong style={{ color: "#22c55e" }}>Adjunct</strong>.  
+    Your feedback helps us improve and grow.
+  </p>
+
+  <form onSubmit={(e) => { e.preventDefault(); alert("Thank you for your review!"); }}>
+    <div style={{ marginBottom: "1rem" }}>
+      <textarea 
+        placeholder="Write your review here..." 
+        style={{
+          width: "100%",
+          minHeight: "100px",
+          padding: "10px",
+          borderRadius: "8px",
+          border: "1px solid #333",
+          backgroundColor: "#121212",
+          color: "#f5f5f5",
+          resize: "none"
+        }}
+        required
+      />
+    </div>
+    <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+      <button 
+        type="submit" 
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "#ffffff",
+          border: "none",
+          borderRadius: "6px",
+          color: "#000",
+          cursor: "pointer",
+          fontWeight: "600"
+
+        }}
+      >
+        Submit Review
+      </button>
+      <button 
+        type="reset" 
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "#333",
+          border: "none",
+          borderRadius: "6px",
+          color: "#fff",
+          cursor: "pointer"
+        }}
+      >
+        Clear
+      </button>
+    </div>
+  </form>
+</div>
 
         {/* FOOTER */}
         <footer style={styles.footer}>
-          <div style={styles.footerLinks}>
-            <a href="#" style={{ color: "#aaa" }}>
-              Privacy
-            </a>
-            <a href="#" style={{ color: "#aaa" }}>
-              Terms
-            </a>
-          </div>
-          
           {/* Contact Information */}
           <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
             <h3 style={{ color: "#f5f5f5", fontSize: "1.1rem", marginBottom: "1rem" }}>Contact Us</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
               <p style={{ color: "#ccc", margin: "0" }}>
-                <strong>Email:</strong> adjunctpa@gmail.com
+                <strong>Email:</strong> contact@adjunct.in
               </p>
               <p style={{ color: "#ccc", margin: "0" }}>
                 <strong>Location:</strong> India
@@ -1195,24 +1250,6 @@ This submission was also saved locally in the browser.
                 <strong>Support:</strong> Available 24/7
               </p>
             </div>
-          </div>
-          
-          {/* Debug/Admin Section - Remove in production */}
-          <div style={{ marginTop: "1rem", fontSize: "0.8rem", opacity: 0.7 }}>
-            <button 
-              onClick={viewStoredSubmissions}
-              style={{ 
-                backgroundColor: "transparent", 
-                border: "1px solid #666", 
-                color: "#666", 
-                padding: "0.25rem 0.5rem", 
-                marginRight: "0.5rem",
-                cursor: "pointer",
-                fontSize: "0.8rem"
-              }}
-            >
-              View Submissions
-            </button>
           </div>
         </footer>
           </div>
@@ -1228,7 +1265,7 @@ This submission was also saved locally in the browser.
                 ...responsiveStyles.popupForm,
                 position: "absolute",
                 left: "50%",
-                top: isMobileView ? "14%" : "75%",
+                top: isMobileView ? "13%" : "75%",
                 transform: isMobileView ? "translate(-50%, -50%)" : "translate(-50%, -335%)" ,
               }} 
               onClick={(e) => e.stopPropagation()}
