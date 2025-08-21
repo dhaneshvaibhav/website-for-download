@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {Menu, X, Lock, Bot, Smartphone, MessagesSquare, Brain, Command, RefreshCw, } from "lucide-react";
 import logoImg from "./assets/logo.png";
 import screenshotImg from "./assets/Screenshot_2025-08-15_175401-removebg-preview.png";
@@ -21,7 +21,7 @@ export default function App() {
     },
     {
       icon: <Lock size={32}  color="#e5e7eb" />,
-      title: "Privacy",
+      title: "End to End Encryption",
       desc: "Your messages are kept safe using asymmetric encryption. This means there are two keys: one public (to lock/encrypt the data) and one private (to unlock/decrypt it). Because of the complex math behind it, hackers cannot realistically break it—making your communication secure",
     },
     {
